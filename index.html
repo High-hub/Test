@@ -2,53 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise!</title>
+    <title>Normal Page (Scary Prank)</title>
     <style>
         body {
-            background-color: #000;
-            color: red;
-            display: flex;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            transition: background-color 1s ease;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .content {
+            margin-top: 50px;
+        }
+
+        .hidden-ghost {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: 'Impact', sans-serif;
-            text-align: center;
-            font-size: 5vw; /* Responsive font size */
-            letter-spacing: 1px;
-            padding: 20px;
-            box-sizing: border-box;
+        }
+
+        .hidden-ghost img {
+            max-width: 600px;
+            height: auto;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .hidden-ghost audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1 id="message">Chala ja bhosdike, yaha kuch nahi hai tere liye!</h1>
 
-    <!-- Adding JavaScript for TTS and Sound -->
+    <h1>Welcome to the Calm Page</h1>
+    <p>Ye page ek simple informative page hai. Kafi shaant aur professional lagta hai. Keep scrolling for more content...</p>
+    
+    <div class="content">
+        <p>Is paragraph me kuch interesting content hai. Aapko bas thoda aur scroll karna hai.</p>
+        <p>Aur yeh raha doosra paragraph. Sab normal lag raha hai na?</p>
+        <p>Aapko lagta hoga ki yeh website bas informative hai. Thoda aur scroll karein...</p>
+        <p>Par jo aap soch rahe ho, wo sach nahi hai... Be prepared...</p>
+    </div>
+
+    <div class="hidden-ghost" id="ghost">
+        <img src="https://i.imgur.com/uuoI82U.png" alt="Scary Ghost">
+        <audio id="scream" src="https://www.fesliyanstudios.com/play-mp3/4566" autoplay></audio>
+    </div>
+
     <script>
-        // Function to speak the Hindi message
-        function speakText() {
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "चला जा भोसड़ीके, यहाँ कुछ नहीं है तेरे लिए!";
-            msg.lang = 'hi-IN'; // Hindi language
-            msg.rate = 0.9; // Speed of speech (adjust if needed)
-
-            // After speaking, play laugh sound
-            msg.onend = function() {
-                var laughSound = new Audio('laugh.mp3');
-                laughSound.play();
-            };
-
-            window.speechSynthesis.speak(msg);
-        }
-
-        // Call the speakText function when page loads
-        window.onload = function() {
-            speakText();
-        };
+        // Ghost will appear after 7 seconds
+        setTimeout(() => {
+            document.body.style.backgroundColor = "black";
+            document.getElementById('ghost').style.display = 'flex';
+            var screamSound = document.getElementById('scream');
+            screamSound.play();
+        }, 7000); // 7 second delay before ghost appears
     </script>
 
-    <!-- Add Laughing Sound File (Ensure you have the laugh.mp3 in the same folder) -->
 </body>
 </html>
