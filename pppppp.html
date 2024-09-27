@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+    <style>
+        body {
+            background-color: #000;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Impact', sans-serif;
+            text-align: center;
+            font-size: 5vw; /* Responsive font size */
+            letter-spacing: 1px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="message">Chala ja bhosdike, yaha kuch nahi hai tere liye!</h1>
+
+    <!-- Adding JavaScript for TTS and Sound -->
+    <script>
+        // Function to speak the Hindi message
+        function speakText() {
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = "चला जा भोसड़ीके, यहाँ कुछ नहीं है तेरे लिए!";
+            msg.lang = 'hi-IN'; // Hindi language
+            msg.rate = 0.9; // Speed of speech (adjust if needed)
+
+            // After speaking, play laugh sound
+            msg.onend = function() {
+                var laughSound = new Audio('laugh.mp3');
+                laughSound.play();
+            };
+
+            window.speechSynthesis.speak(msg);
+        }
+
+        // Call the speakText function when page loads
+        window.onload = function() {
+            speakText();
+        };
+    </script>
+
+    <!-- Add Laughing Sound File (Ensure you have the laugh.mp3 in the same folder) -->
+</body>
+</html>
