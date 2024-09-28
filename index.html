@@ -34,6 +34,8 @@
             background-repeat: no-repeat;
             cursor: pointer;
             animation: float 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
 
         /* Animation to float the gift box up and down */
@@ -53,7 +55,10 @@
             font-size: 2em;
             font-family: 'Comic Sans MS', cursive;
             color: red;
-            margin-top: 20px;
+            position: absolute;
+            top: -60px; /* Adjust this to move the text above the gift */
+            left: 50%;
+            transform: translateX(-50%);
             animation: fadeIn 1.5s ease-in-out infinite;
         }
 
@@ -71,7 +76,10 @@
         }
 
         .arrow {
-            margin-top: 10px;
+            position: absolute;
+            top: -30px; /* Adjust this to move the arrow just above the gift */
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 3em;
             color: red;
             animation: bounce 1.5s ease-in-out infinite;
@@ -140,12 +148,12 @@
 
     <!-- Gift Container -->
     <div class="gift-container">
-        <!-- Gift box -->
-        <div class="gift" id="gift"></div>
         <!-- Open gift text -->
         <div class="open-text">Open this Gift</div>
         <!-- Animated arrow -->
         <div class="arrow">⬇️</div>
+        <!-- Gift box -->
+        <div class="gift" id="gift"></div>
     </div>
 
     <!-- Hidden ghost section -->
