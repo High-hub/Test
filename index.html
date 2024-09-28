@@ -24,14 +24,10 @@
             text-align: center;
         }
 
-        /* Gift image styling */
+        /* SVG Gift styling */
         .gift {
-            width: 200px;
-            height: 200px;
-            background-image: url('https://example.com/gift-box.png'); /* Add your gift box image here */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            width: 150px;
+            height: 150px;
             cursor: pointer;
             animation: float 2s ease-in-out infinite;
         }
@@ -140,8 +136,12 @@
 
     <!-- Gift Container -->
     <div class="gift-container">
-        <!-- Gift box -->
-        <div class="gift" id="gift"></div>
+        <!-- SVG Gift image -->
+        <svg class="gift" id="gift" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 3a4 4 0 0 0-8 0v4h8V3z"></path>
+            <line x1="12" y1="7" x2="12" y2="21"></line>
+        </svg>
         <!-- Open gift text -->
         <div class="open-text">Open this Gift</div>
         <!-- Animated arrow -->
