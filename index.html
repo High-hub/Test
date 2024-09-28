@@ -32,6 +32,23 @@
             text-align: center;
         }
 
+        .arrow {
+    margin-top: 20px;
+    animation: float-arrow 2s ease-in-out infinite; /* Add this line */
+        }
+
+        @keyframes float-arrow {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+        }
+
         /* Gift image styling */
         .gift {
             width: 200px;
