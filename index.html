@@ -24,11 +24,14 @@
             text-align: center;
         }
 
+        /* Gift image styling */
         .gift {
             width: 200px;
             height: 200px;
-            background-image: url('gift-box.png'); /* Use a gift box image */
+            background-image: url('https://example.com/gift-box.png'); /* Add your gift box image here */
             background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             cursor: pointer;
             animation: float 2s ease-in-out infinite;
         }
@@ -48,7 +51,7 @@
 
         .open-text {
             font-size: 2em;
-            font-family: 'Comic Sans MS', cursive; /* You can choose any stylish font */
+            font-family: 'Comic Sans MS', cursive;
             color: red;
             margin-top: 20px;
             animation: fadeIn 1.5s ease-in-out infinite;
@@ -137,8 +140,11 @@
 
     <!-- Gift Container -->
     <div class="gift-container">
+        <!-- Gift box -->
         <div class="gift" id="gift"></div>
+        <!-- Open gift text -->
         <div class="open-text">Open this Gift</div>
+        <!-- Animated arrow -->
         <div class="arrow">⬇️</div>
     </div>
 
