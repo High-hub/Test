@@ -115,6 +115,7 @@
         let ghostImage = document.getElementById('ghost-image');
         let screamSound = document.getElementById('scream');
         let countdownNumbers = [3, 2, 1];
+        let userInteracted = false;  // Flag to check if the user has interacted
 
         // Countdown Logic
         function startCountdown() {
@@ -144,22 +145,25 @@
             // Add the class to trigger animation and movement
             ghostImage.classList.add('grow', 'shake');
             
-            // Ensure audio is loaded and played
-            screamSound.play();
+            // Ensure audio is played only after user interaction
+            screamSound.play().catch(function () {
+                console.error("Auto-play blocked, audio will be triggered by interaction.");
+            });
         }
 
-        // Start the countdown after a brief delay (1 second for dramatic effect)
-        setTimeout(() => {
-            startCountdown();
-        }, 1000);
+        // Event listener for user interaction
+        document.body.addEventListener('click', function() {
+            if (!userInteracted) {
+                userInteracted = true; // Mark that user has interacted
 
-        // Fix for ensuring audio plays on all browsers
-        screamSound.addEventListener('canplaythrough', function () {
-            screamSound.play().catch(function () {
-                // In case browser blocks auto-play, we'll log it
-                console.error("Auto-play was blocked by the browser.");
-            });
+                // Now we can safely start the countdown and play audio
+                startCountdown();
+            }
         });
+
+        // Instructions to encourage interaction
+        countdownElement.innerHTML = "Click to Start"; // Encourage user to click
+
     </script>
 
 </body>
