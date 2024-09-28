@@ -24,6 +24,19 @@
             font-family: 'Comic Sans MS', cursive;
             color: red;
             margin-bottom: 20px;
+            padding: 10px 20px; /* Add padding to look like a button */
+            border: 2px solid red; /* Add a border */
+            display: inline-block; /* Display inline-block to shape it like a button */
+            border-radius: 10px; /* Rounded corners */
+            background: rgba(255, 0, 0, 0.1); /* Slight background color */
+            cursor: default; /* Normal cursor, not a pointer */
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Add a glowing shadow */
+            transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+        }
+
+        .heading:hover {
+            background: rgba(255, 0, 0, 0.2); /* Change background on hover */
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); /* Intensify shadow on hover */
         }
 
         .gift-container {
@@ -32,34 +45,8 @@
             text-align: center;
         }
 
+        /* Animation to float the arrow up and down */
         @keyframes float-arrow {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-        }
-
-        /* Gift image styling */
-        .gift {
-            width: 200px;
-            height: 200px;
-            background-image: url('gift.png'); /* Add your gift box image here */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            animation: float 2s ease-in-out infinite;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Animation to float the gift box up and down */
-        @keyframes float {
             0% {
                 transform: translateY(0px);
             }
@@ -72,8 +59,21 @@
         }
 
         .arrow {
-    margin-top: 20px;
-    animation: float-arrow 2s ease-in-out infinite; /* Add this line */
+            margin-top: 20px;
+            animation: float-arrow 2s ease-in-out infinite;
+        }
+
+        /* Gift image styling */
+        .gift {
+            width: 200px;
+            height: 200px;
+            background-image: url('gift.png'); /* Add your gift box image here */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
         }
 
         /* Hidden scary image */
