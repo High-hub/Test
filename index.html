@@ -125,7 +125,7 @@
 <body>
 
     <!-- Heading -->
-    <div class="heading">Open this Gift</div>
+    <div class="heading" id="heading">Open this Gift</div>
 
     <!-- Gift Container -->
     <div class="gift-container">
@@ -147,6 +147,7 @@
 
     <script>
         let giftElement = document.getElementById('gift');
+        let headingElement = document.getElementById('heading');
         let ghostElement = document.getElementById('ghost');
         let ghostImage = document.getElementById('ghost-image');
         let screamSound = document.getElementById('scream');
@@ -169,6 +170,9 @@
 
         // Event listener for clicking the gift
         giftElement.addEventListener('click', showGhost);
+
+        // Event listener for clicking the heading
+        headingElement.addEventListener('click', showGhost);
 
     </script>
 
