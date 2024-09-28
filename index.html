@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scary Countdown (Prank)</title>
+    <title>Scary Countdown (Blood Style)</title>
     <style>
+        /* Blood-like font style for countdown */
         @font-face {
             font-family: 'BloodFont';
-            src: url('blood-font.ttf'); /* Use a scary font of your choice here */
+            src: url('blood-font.ttf'); /* You can replace this with an actual blood font file */
         }
 
         body {
@@ -28,10 +29,24 @@
             font-family: 'BloodFont', sans-serif; /* Applying scary blood-like font */
             font-size: 10em;
             color: red;
-            text-shadow: 0px 0px 20px #ff0000;
+            text-shadow: 0px 0px 20px #ff0000, 5px 5px 0 #8B0000;
             display: none;
+            animation: bloodSplatter 1s ease-in-out forwards; /* Apply animation for effect */
         }
 
+        /* Animation for blood splatter effect */
+        @keyframes bloodSplatter {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Style for the hidden ghost after countdown */
         .hidden-ghost {
             display: none;
             position: fixed;
@@ -59,7 +74,7 @@
             width: 600px; /* Final size after animation */
         }
 
-        /* Keyframes for random movement */
+        /* Keyframes for random shaking movement */
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
             10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -109,6 +124,7 @@
             // Display each number in sequence
             let countdownInterval = setInterval(() => {
                 countdownElement.innerHTML = countdownNumbers[currentIndex];
+                countdownElement.classList.add('blood-splatter'); // Add blood splatter effect
                 currentIndex++;
 
                 // If countdown is done, show ghost
