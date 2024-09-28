@@ -3,50 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scary Countdown (Blood Style)</title>
+    <title>Open the Gift</title>
     <style>
-        /* Blood-like font style for countdown */
-        @font-face {
-            font-family: 'BloodFont';
-            src: url('blood-font.ttf'); /* You can replace this with an actual blood font file */
-        }
-
         body {
             font-family: 'Arial', sans-serif;
             background-color: #000;
             color: #fff;
             text-align: center;
             padding: 50px;
-            transition: background-color 1s ease;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
             margin: 0;
         }
 
-        #countdown {
-            font-family: 'BloodFont', sans-serif; /* Applying scary blood-like font */
-            font-size: 10em;
-            color: red;
-            text-shadow: 0px 0px 20px #ff0000, 5px 5px 0 #8B0000;
-            display: none;
-            animation: bloodSplatter 1s ease-in-out forwards; /* Apply animation for effect */
+        .gift-container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
         }
 
-        /* Animation for blood splatter effect */
-        @keyframes bloodSplatter {
+        .gift {
+            width: 200px;
+            height: 200px;
+            background-image: url('gift-box.png'); /* Use a gift box image */
+            background-size: cover;
+            cursor: pointer;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Animation to float the gift box up and down */
+        @keyframes float {
             0% {
-                transform: scale(0.1);
-                opacity: 0;
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
             }
             100% {
-                transform: scale(1);
-                opacity: 1;
+                transform: translateY(0px);
             }
         }
 
-        /* Style for the hidden ghost after countdown */
+        .open-text {
+            font-size: 2em;
+            font-family: 'Comic Sans MS', cursive; /* You can choose any stylish font */
+            color: red;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out infinite;
+        }
+
+        /* Fade-in animation for the text */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .arrow {
+            margin-top: 10px;
+            font-size: 3em;
+            color: red;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        /* Bounce animation for the arrow */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Hidden scary image */
         .hidden-ghost {
             display: none;
             position: fixed;
@@ -58,23 +99,20 @@
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
 
         .hidden-ghost img {
-            width: 100px; /* Starting small */
+            width: 100px;
             height: auto;
             border: 5px solid white;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: width 4s ease-out; /* Smooth scaling */
-            position: relative;
+            transition: width 4s ease-out;
         }
 
         .hidden-ghost img.grow {
-            width: 600px; /* Final size after animation */
+            width: 600px;
         }
 
-        /* Keyframes for random shaking movement */
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
             10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -90,79 +128,50 @@
         }
 
         .hidden-ghost img.shake {
-            animation: shake 0.1s infinite; /* Keeps shaking continuously */
+            animation: shake 0.1s infinite;
         }
 
-        .hidden-ghost audio {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Scary Countdown -->
-    <div id="countdown">3</div>
+    <!-- Gift Container -->
+    <div class="gift-container">
+        <div class="gift" id="gift"></div>
+        <div class="open-text">Open this Gift</div>
+        <div class="arrow">⬇️</div>
+    </div>
 
+    <!-- Hidden ghost section -->
     <div class="hidden-ghost" id="ghost">
-        <!-- Updated Scary Ghost Image with shaking movement -->
         <img id="ghost-image" src="scary.jpeg" alt="Scary Ghost">
         <audio id="scream" src="scary.ogg" preload="auto"></audio>
     </div>
 
     <script>
-        let countdownElement = document.getElementById('countdown');
+        let giftElement = document.getElementById('gift');
         let ghostElement = document.getElementById('ghost');
         let ghostImage = document.getElementById('ghost-image');
         let screamSound = document.getElementById('scream');
-        let countdownNumbers = [3, 2, 1];
-        let userInteracted = false;  // Flag to check if the user has interacted
 
-        // Countdown Logic
-        function startCountdown() {
-            countdownElement.style.display = 'block';
-            let currentIndex = 0;
-
-            // Display each number in sequence
-            let countdownInterval = setInterval(() => {
-                countdownElement.innerHTML = countdownNumbers[currentIndex];
-                countdownElement.classList.add('blood-splatter'); // Add blood splatter effect
-                currentIndex++;
-
-                // If countdown is done, show ghost
-                if (currentIndex === countdownNumbers.length) {
-                    clearInterval(countdownInterval);
-                    showGhost();
-                }
-            }, 1000); // 1-second interval
-        }
-
-        // Function to display ghost and play sound
+        // Function to show the scary ghost and play sound
         function showGhost() {
-            countdownElement.style.display = 'none'; // Hide the countdown
+            // Hide the gift section
+            document.querySelector('.gift-container').style.display = 'none';
+
+            // Show the ghost and play the audio
             document.body.style.backgroundColor = "black";
             ghostElement.style.display = 'flex';
 
-            // Add the class to trigger animation and movement
+            // Add grow and shake effects to the image
             ghostImage.classList.add('grow', 'shake');
-            
-            // Ensure audio is played only after user interaction
             screamSound.play().catch(function () {
-                console.error("Auto-play blocked, audio will be triggered by interaction.");
+                console.error("Auto-play blocked, but user interaction should allow it.");
             });
         }
 
-        // Event listener for user interaction
-        document.body.addEventListener('click', function() {
-            if (!userInteracted) {
-                userInteracted = true; // Mark that user has interacted
-
-                // Now we can safely start the countdown and play audio
-                startCountdown();
-            }
-        });
-
-        // Instructions to encourage interaction
-        countdownElement.innerHTML = "Click to Start"; // Encourage user to click
+        // Event listener for clicking the gift
+        giftElement.addEventListener('click', showGhost);
 
     </script>
 
